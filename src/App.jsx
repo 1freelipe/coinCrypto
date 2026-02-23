@@ -1,5 +1,7 @@
+import CryptoCoins from './pages/CryptoCoins';
+
 function App() {
-  return <h1>Hello World!</h1>;
+  return <CryptoCoins />;
 }
 
 export default App;
