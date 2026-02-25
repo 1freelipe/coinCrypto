@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react';
-import Getcoins from '../api/api';
+import Getcoins from '../../api/api';
 
 export default function CryptoCoins() {
   useEffect(() => {
