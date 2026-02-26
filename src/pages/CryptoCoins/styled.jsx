@@ -4,31 +4,17 @@ import { motion } from 'framer-motion';
 import coinImg from '../../images/coin.png';
 
 export const Main = styled.main`
-  width: 100vw;
-  height: 100vh;
   background: #242124;
   padding: 20px;
 `;
 
 export const ContainerTitle = styled.div`
   width: 700px;
-  height: 350px;
   display: flex;
   align-items: center;
   justify-content: center;
-  margin: 50px auto 0;
+  margin: 50px auto 50px;
   position: relative;
-`;
-
-export const Title = styled.h1`
-  font-size: 107px;
-  background: linear-gradient(90deg, #fff8dc, #ffdf6c, #d4af37, #8c6b1f);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  font-family: 'Montserrat', sans-serif;
-  font-optical-sizing: auto;
-  font-weight: 900;
-  font-style: normal;
 `;
 
 export const CoinImg = styled(motion.div)`
@@ -36,11 +22,48 @@ export const CoinImg = styled(motion.div)`
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
-  width: 250px;
-  height: 250px;
+  width: 200px;
+  height: 200px;
   position: absolute;
-  left: 28%;
-  top: -25%;
+  left: 32%;
+  top: -22%;
   opacity: 0.8;
   perspective: 800px;
+`;
+
+export const DivForm = styled.div`
+  width: 85%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto;
+`;
+
+export const InputCoin = styled.input`
+  width: 100%;
+  background: #252525;
+  border: none;
+  border: 1px solid #bc13fe;
+  padding: 20px;
+  border-radius: 9px;
+  font-size: 15px;
+  color: #fffff0;
+  outline: none;
+
+  &::placeholder {
+    color: #fffff0;
+    font-family: 'Poppins', sans-serif;
+    font-weight: 500;
+    font-style: normal;
+  }
+`;
+
+export const Sectioncoins = styled.section`
+  width: 90%;
+  height: 100%;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  margin: 40px auto;
+  padding: 20px;
+  gap: 25px;
 `;

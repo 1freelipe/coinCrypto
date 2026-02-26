@@ -2,11 +2,13 @@ import React, { useEffect, useState } from 'react';
 import { useAnimation } from 'framer-motion';
 import Getcoins from '../../api/api';
 
+import CardCoin from '../../components/CardCoin/CardCoin';
 import * as coin from './styled';
+import CoinCryptoLogo from '../../components/AuraHover/AuraHover';
 
 export default function CryptoCoins() {
   const controls = useAnimation();
-  const [rotation, setRotation] = useState(0);
+  const [rotation, setRotation] = useState(180);
 
   useEffect(() => {
     async function fetchData() {
@@ -23,7 +25,7 @@ export default function CryptoCoins() {
 
   useEffect(() => {
     const interval = setInterval(() => {
-      setRotation((prev) => prev + 180);
+      setRotation((prev) => prev + 360);
 
       controls.start({
         rotateY: rotation + 180,
@@ -32,7 +34,6 @@ export default function CryptoCoins() {
           ease: 'easeInOut',
         },
       });
-      console.log(rotation);
     }, 5000);
 
     return () => clearInterval(interval);
@@ -41,13 +42,20 @@ export default function CryptoCoins() {
   return (
     <coin.Main>
       <coin.ContainerTitle>
-        <coin.CoinImg
-          animate={controls}
-          initial={{ rotateY: 0 }}
-          style={{ transformStyle: 'preserve-3d' }}
-        />
-        <coin.Title>CoinCrypto</coin.Title>
+        <CoinCryptoLogo />
       </coin.ContainerTitle>
+
+      <coin.DivForm>
+        <coin.InputCoin placeholder="Procure a crypto..." />
+      </coin.DivForm>
+
+      <coin.Sectioncoins>
+        <CardCoin />
+        <CardCoin />
+        <CardCoin />
+        <CardCoin />
+        <CardCoin />
+      </coin.Sectioncoins>
     </coin.Main>
   );
 }
