@@ -28,20 +28,23 @@ export default function CryptoCoins() {
     return <h1>Aguarde....</h1>;
   }
 
+  // Método para formatação de valores, já formatado com o R$ utilizando Intl.NumberFormat
   const formatCoin = new Intl.NumberFormat('pt-BR', {
     style: 'currency',
     currency: 'BRL',
   });
+
+  // Método para formatação de porcentagem.
   const percentageFormat = new Intl.NumberFormat('pt-BR', {
     minimumFractionDigits: 2,
     maximumFractionDigits: 2,
   });
+
+  // Método para formatar os símbolos de cada moeda em maiúsculo.
   const formatSymbol = (str) => {
     if (typeof str !== 'string') return '';
     return str.toUpperCase();
   };
-
-  console.log(cryptoCoins);
 
   return (
     <coin.Main>
