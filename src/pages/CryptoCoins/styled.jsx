@@ -67,3 +67,85 @@ export const Sectioncoins = styled.section`
   padding: 20px;
   gap: 25px;
 `;
+
+export const Namecrypto = styled.h2`
+  font-family: 'Lilita One', sans-serif;
+  font-weight: 400;
+  font-style: normal;
+  font-size: 30px;
+  color: #fffff0;
+`;
+
+export const DivImg = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 150px;
+  height: 150px;
+`;
+
+export const Cryptoimg = styled.img`
+  width: 100%;
+`;
+
+export const Cryptobadge = styled.div`
+  position: absolute;
+  top: 10px;
+  right: 13px;
+  width: 50px;
+  height: 50px;
+`;
+
+export const Badge = styled.h3`
+  color: #d4af37;
+  font-family: 'Lilita One', sans-serif;
+  font-weight: 400;
+  font-style: normal;
+  font-size: 24px;
+`;
+
+export const PriceWrapper = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+`;
+
+export const Cryptoprice = styled.h2`
+  color: #fffff0;
+  font-family: 'Lilita One', sans-serif;
+  font-weight: 400;
+  font-style: normal;
+  font-size: 24px;
+`;
+
+export const Cryptopricepercentage = styled.h2`
+  color: ${(props) => (props.price > 0 ? '#90ee90' : 'red')};
+  font-family: 'Lilita One', sans-serif;
+  font-weight: 400;
+  font-style: normal;
+  font-size: 24px;
+`;
+
+export const CryptoPriceChange = styled.h3`
+  color: #fffff0;
+  font-family: 'Lilita One', sans-serif;
+  font-weight: 400;
+  font-style: normal;
+  font-size: 24px;
+`;
+
+export const HighLow = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+`;
+
+export const Price = styled.p`
+  color: #fffff0;
+  font-family: 'Lilita One', sans-serif;
+  font-weight: 400;
+  font-style: normal;
+  font-size: 24px;
+`;

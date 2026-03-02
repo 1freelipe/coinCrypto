@@ -8,6 +8,13 @@ export const CardCoin = styled.div`
   border-radius: 12px;
   box-shadow: 12px 12px 12px #211b15;
   transition: all 0.3s ease-in-out;
+  padding: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  gap: 20px;
+  position: relative;
 
   &:hover {
     transform: translateY(-10px) translateX(4px);

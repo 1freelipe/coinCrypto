@@ -30,9 +30,8 @@ const Title = styled(motion.h1)`
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
-  font-family: 'Montserrat', sans-serif;
-  font-optical-sizing: auto;
-  font-weight: 900;
+  font-family: 'Kanit', sans-serif;
+  font-weight: 800;
   font-style: normal;
 `;
 

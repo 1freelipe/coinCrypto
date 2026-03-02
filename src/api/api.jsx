@@ -6,7 +6,7 @@ export default async function Getcoins() {
       per_page: 10,
     });
     if (response.status >= 200 && response.status <= 299) {
-      return console.log(response.data);
+      return response.data;
     } else {
       console.log('Falha na requisição', response);
     }
