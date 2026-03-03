@@ -7,6 +7,7 @@ export const Main = styled.main`
   background: #242124;
   min-height: 100vw;
   padding: 20px;
+  position: relative;
 `;
 
 export const ContainerTitle = styled.div`
@@ -47,9 +48,14 @@ export const InputCoin = styled.input`
   border: 1px solid #bc13fe;
   padding: 20px;
   border-radius: 9px;
-  font-size: 15px;
+  font-size: 17px;
   color: #fffff0;
   outline: none;
+  transition: all 0.3s ease-in-out;
+
+  &:focus {
+    border-color: #d4af37;
+  }
 
   &::placeholder {
     color: #fffff0;
@@ -149,4 +155,45 @@ export const Price = styled.p`
   font-weight: 400;
   font-style: normal;
   font-size: 24px;
+`;
+
+export const DivInformation = styled.div`
+  width: 100%;
+  padding: 10px;
+  height: 40px;
+  position: absolute;
+  top: 0;
+  left: 0;
+`;
+export const DivWrapperInformation = styled.div`
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 15px;
+`;
+
+export const Information = styled.h3`
+  color: ${(props) => (props.price > 0 ? '#006400' : '#fffff0')};
+  font-family: 'Poppins', sans-serif;
+  font-weight: 500;
+  font-style: normal;
+  font-size: 20px;
+`;
+
+export const ButtonDetail = styled(motion.button)`
+  border: 2px solid #d4af37;
+  color: #fffff0;
+  background: #bc13fe;
+  padding: 15px;
+  font-family: 'Poppins', sans-serif;
+  font-weight: 700;
+  font-style: normal;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 16px;
+  border-radius: 12px;
+  width: 150px;
 `;

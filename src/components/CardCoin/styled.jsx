@@ -2,7 +2,7 @@ import styled from 'styled-components';
 
 export const CardCoin = styled.div`
   width: 100%;
-  height: 400px;
+  min-height: 400px;
   background: #211b15;
   border: 1px solid #bc13fe;
   border-radius: 12px;

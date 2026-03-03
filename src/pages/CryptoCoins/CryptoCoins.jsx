@@ -14,6 +14,7 @@ export default function CryptoCoins() {
       try {
         const data = await Getcoins();
         setCryptoCoins(data);
+        console.log(data);
       } catch (error) {
         console.log(error);
       } finally {
@@ -46,8 +47,21 @@ export default function CryptoCoins() {
     return str.toUpperCase();
   };
 
+  const updated = cryptoCoins[0].last_updated;
+  const symbol = cryptoCoins[0].symbol;
+  const totalVolume = cryptoCoins[0].total_volume;
+  const totalSuply = cryptoCoins[0].total_supply;
+
   return (
     <coin.Main>
+      <coin.DivInformation>
+        <coin.DivWrapperInformation>
+          <coin.Information>Last Updated: {updated} </coin.Information>
+          <coin.Information>Top Coin: {formatSymbol(symbol)}</coin.Information>
+          <coin.Information>Total Volume: {totalVolume}</coin.Information>
+          <coin.Information>Total Supply: {totalSuply}</coin.Information>
+        </coin.DivWrapperInformation>
+      </coin.DivInformation>
       <coin.ContainerTitle>
         <CoinCryptoLogo />
       </coin.ContainerTitle>
@@ -57,7 +71,7 @@ export default function CryptoCoins() {
       </coin.DivForm>
 
       <coin.Sectioncoins>
-        {cryptoCoins ? (
+        {loading ? (
           <CardCoin>
             <h1 style={{ color: '#fffff0' }}>Coins not found</h1>
           </CardCoin>
@@ -87,12 +101,27 @@ export default function CryptoCoins() {
                   </coin.Cryptopricepercentage>
                 </coin.PriceWrapper>
                 <coin.CryptoPriceChange>
-                  24h (-1564897756)
+                  24h ({formatCoin.format(coins.market_cap_change_24h)})
                 </coin.CryptoPriceChange>
                 <coin.HighLow>
-                  <coin.Price>High (515615....)</coin.Price>
-                  <coin.Price>Low (515615....)</coin.Price>
+                  <coin.Price>High ({coins.high_24h})</coin.Price>
+                  <coin.Price>Low ({coins.low_24h})</coin.Price>
                 </coin.HighLow>
+
+                <coin.ButtonDetail
+                  whileHover={{ scale: 1.05 }}
+                  whileTap={{ scale: 0.95 }}
+                  initial="0"
+                  animate={{ x: [0, 5, -10, 0] }}
+                  transition={{
+                    duration: 0.5,
+                    ease: 'easeInOut',
+                    delay: 5,
+                    repeat: 'Infinity',
+                  }}
+                >
+                  Detalhes...
+                </coin.ButtonDetail>
               </CardCoin>
             );
           })
