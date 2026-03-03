@@ -57,38 +57,46 @@ export default function CryptoCoins() {
       </coin.DivForm>
 
       <coin.Sectioncoins>
-        {cryptoCoins.map((coins, key) => (
-          <>
-            <CardCoin key={key}>
-              <coin.Cryptobadge>
-                <coin.Badge>{`#${coins.market_cap_rank}`}</coin.Badge>
-              </coin.Cryptobadge>
-              <coin.Namecrypto>
-                {coins.name}
-                {` (${formatSymbol(coins.symbol)})`}
-              </coin.Namecrypto>
-              <coin.DivImg>
-                <coin.Cryptoimg src={coins.image} />
-              </coin.DivImg>
-              <coin.PriceWrapper>
-                <coin.Cryptoprice>
-                  {formatCoin.format(coins.current_price)}
-                </coin.Cryptoprice>
-                <coin.Cryptopricepercentage
-                  price={coins.price_change_percentage_24h}
-                >
-                  {' '}
-                  {`(${percentageFormat.format(coins.price_change_percentage_24h)}%)`}
-                </coin.Cryptopricepercentage>
-              </coin.PriceWrapper>
-              <coin.CryptoPriceChange>24h (-1564897756)</coin.CryptoPriceChange>
-              <coin.HighLow>
-                <coin.Price>High (515615....)</coin.Price>
-                <coin.Price>Low (515615....)</coin.Price>
-              </coin.HighLow>
-            </CardCoin>
-          </>
-        ))}
+        {cryptoCoins ? (
+          <CardCoin>
+            <h1 style={{ color: '#fffff0' }}>Coins not found</h1>
+          </CardCoin>
+        ) : (
+          cryptoCoins.map((coins, key) => {
+            return (
+              <CardCoin key={key}>
+                <coin.Cryptobadge>
+                  <coin.Badge>{`#${coins.market_cap_rank}`}</coin.Badge>
+                </coin.Cryptobadge>
+                <coin.Namecrypto>
+                  {coins.name}
+                  {` (${formatSymbol(coins.symbol)})`}
+                </coin.Namecrypto>
+                <coin.DivImg>
+                  <coin.Cryptoimg src={coins.image} />
+                </coin.DivImg>
+                <coin.PriceWrapper>
+                  <coin.Cryptoprice>
+                    {formatCoin.format(coins.current_price)}
+                  </coin.Cryptoprice>
+                  <coin.Cryptopricepercentage
+                    price={coins.price_change_percentage_24h}
+                  >
+                    {' '}
+                    {`(${percentageFormat.format(coins.price_change_percentage_24h)}%)`}
+                  </coin.Cryptopricepercentage>
+                </coin.PriceWrapper>
+                <coin.CryptoPriceChange>
+                  24h (-1564897756)
+                </coin.CryptoPriceChange>
+                <coin.HighLow>
+                  <coin.Price>High (515615....)</coin.Price>
+                  <coin.Price>Low (515615....)</coin.Price>
+                </coin.HighLow>
+              </CardCoin>
+            );
+          })
+        )}
       </coin.Sectioncoins>
     </coin.Main>
   );

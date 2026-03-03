@@ -5,6 +5,7 @@ import coinImg from '../../images/coin.png';
 
 export const Main = styled.main`
   background: #242124;
+  min-height: 100vw;
   padding: 20px;
 `;
 
