@@ -7,6 +7,7 @@ import CardCoin from '../../components/CardCoin/CardCoin';
 import * as coin from './styled';
 import CoinCryptoLogo from '../../components/AuraHover/AuraHover';
 import Pagination from '../../components/Pagination/Pagination';
+import LoadingSkeleton from '../../components/Skeleton/Skeleton';
 
 export default function CryptoCoins() {
   const [cryptoCoins, setCryptoCoins] = useState([]);
@@ -20,7 +21,7 @@ export default function CryptoCoins() {
     async function fetchData() {
       setLoading(true);
       try {
-        if (search) {
+        if (search && search.length > 0) {
           const response = await axios.get(`coins/markets`, {
             params: {
               vs_currency: 'brl',
@@ -55,10 +56,6 @@ export default function CryptoCoins() {
     setSearch(searchInputText);
     setPage(1);
   };
-
-  if (loading) {
-    return <h1>Aguarde....</h1>;
-  }
 
   // Método para formatação de valores, já formatado com o R$ utilizando Intl.NumberFormat
   const formatCoin = new Intl.NumberFormat('pt-BR', {
@@ -128,61 +125,59 @@ export default function CryptoCoins() {
       </coin.DivForm>
 
       <coin.Sectioncoins>
-        {cryptoCoins.length === 0 ? (
-          <CardCoin>
-            <h1 style={{ color: '#fffff0' }}>Coins not found</h1>
-          </CardCoin>
-        ) : (
-          cryptoCoins.map((coins, key) => {
-            return (
-              <CardCoin key={key}>
-                <coin.Cryptobadge>
-                  <coin.Badge>{`#${coins.market_cap_rank}`}</coin.Badge>
-                </coin.Cryptobadge>
-                <coin.Namecrypto>
-                  {coins.name}
-                  {` (${formatSymbol(coins.symbol)})`}
-                </coin.Namecrypto>
-                <coin.DivImg>
-                  <coin.Cryptoimg src={coins.image} />
-                </coin.DivImg>
-                <coin.PriceWrapper>
-                  <coin.Cryptoprice>
-                    {formatCoin.format(coins.current_price)}
-                  </coin.Cryptoprice>
-                  <coin.Cryptopricepercentage
-                    price={coins.price_change_percentage_24h}
-                  >
-                    {' '}
-                    {`(${percentageFormat.format(coins.price_change_percentage_24h)}%)`}
-                  </coin.Cryptopricepercentage>
-                </coin.PriceWrapper>
-                <coin.CryptoPriceChange>
-                  24h ({coins.market_cap_change_24h})
-                </coin.CryptoPriceChange>
-                <coin.HighLow>
-                  <coin.Price>High ({coins.high_24h})</coin.Price>
-                  <coin.Price>Low ({coins.low_24h})</coin.Price>
-                </coin.HighLow>
+        {loading
+          ? Array.from({ length: 20 }).map((_, index) => (
+              <LoadingSkeleton key={index} />
+            ))
+          : cryptoCoins.map((coins, key) => {
+              return (
+                <CardCoin key={key}>
+                  <coin.Cryptobadge>
+                    <coin.Badge>{`#${coins.market_cap_rank}`}</coin.Badge>
+                  </coin.Cryptobadge>
+                  <coin.Namecrypto>
+                    {coins.name}
+                    {` (${formatSymbol(coins.symbol)})`}
+                  </coin.Namecrypto>
+                  <coin.DivImg>
+                    <coin.Cryptoimg src={coins.image} />
+                  </coin.DivImg>
+                  <coin.PriceWrapper>
+                    <coin.Cryptoprice>
+                      {formatCoin.format(coins.current_price)}
+                    </coin.Cryptoprice>
+                    <coin.Cryptopricepercentage
+                      price={coins.price_change_percentage_24h}
+                    >
+                      {' '}
+                      {`(${percentageFormat.format(coins.price_change_percentage_24h)}%)`}
+                    </coin.Cryptopricepercentage>
+                  </coin.PriceWrapper>
+                  <coin.CryptoPriceChange>
+                    24h ({coins.market_cap_change_24h})
+                  </coin.CryptoPriceChange>
+                  <coin.HighLow>
+                    <coin.Price>High ({coins.high_24h})</coin.Price>
+                    <coin.Price>Low ({coins.low_24h})</coin.Price>
+                  </coin.HighLow>
 
-                <coin.ButtonDetail
-                  whileHover={{ scale: 1.05 }}
-                  whileTap={{ scale: 0.95 }}
-                  animate={{ x: [0, -20, 20, -10, 0] }}
-                  transition={{
-                    duration: 0.3,
-                    ease: 'easeInOut',
-                    delay: 5,
-                    repeatDelay: 5,
-                    repeat: Infinity,
-                  }}
-                >
-                  Detalhes...
-                </coin.ButtonDetail>
-              </CardCoin>
-            );
-          })
-        )}
+                  <coin.ButtonDetail
+                    whileHover={{ scale: 1.05 }}
+                    whileTap={{ scale: 0.95 }}
+                    animate={{ x: [0, -20, 20, -10, 0] }}
+                    transition={{
+                      duration: 0.3,
+                      ease: 'easeInOut',
+                      delay: 5,
+                      repeatDelay: 5,
+                      repeat: Infinity,
+                    }}
+                  >
+                    Detalhes...
+                  </coin.ButtonDetail>
+                </CardCoin>
+              );
+            })}
       </coin.Sectioncoins>
       {!search && (
         <Pagination>
