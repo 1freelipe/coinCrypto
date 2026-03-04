@@ -1,20 +1,39 @@
 import React, { useEffect, useState } from 'react';
 import Getcoins from '../../api/api';
+import axios from '../../services/axios';
 
 import CardCoin from '../../components/CardCoin/CardCoin';
 import * as coin from './styled';
 import CoinCryptoLogo from '../../components/AuraHover/AuraHover';
+import Pagination from '../../components/Pagination/Pagination';
 
 export default function CryptoCoins() {
   const [cryptoCoins, setCryptoCoins] = useState([]);
   const [loading, setLoading] = useState(true);
+  const [page, setPage] = useState(1);
+  const [search, setSearch] = useState('');
+  const [searchInputText, setSearchInputText] = useState('');
+  const perPage = 20;
 
   useEffect(() => {
     async function fetchData() {
+      setLoading(true);
       try {
-        const data = await Getcoins();
-        setCryptoCoins(data);
-        console.log(data);
+        if (search) {
+          const response = await axios.get(`coins/markets`, {
+            params: {
+              vs_currency: 'brl',
+              ids: search.toLowerCase(),
+            },
+          });
+          console.log(response.data);
+          setCryptoCoins(response.data);
+        } else {
+          const data = await Getcoins(perPage, page);
+          window.scrollTo({ top: 0, behavior: 'smooth' });
+          setCryptoCoins(data);
+          console.log(data);
+        }
       } catch (error) {
         console.log(error);
       } finally {
@@ -23,7 +42,18 @@ export default function CryptoCoins() {
     }
 
     fetchData();
-  }, []);
+  }, [page, search]);
+
+  const handleNextPage = () => setPage((prev) => prev + 1);
+  const handlePrevPage = () => setPage((prev) => (prev > 1 ? prev - 1 : 1));
+  const handleChange = (e) => {
+    setSearchInputText(e.target.value);
+  };
+  const handleClick = (e) => {
+    e.preventDefault();
+    setSearch(searchInputText);
+    setPage(1);
+  };
 
   if (loading) {
     return <h1>Aguarde....</h1>;
@@ -47,27 +77,51 @@ export default function CryptoCoins() {
     return str.toUpperCase();
   };
 
-  const updated = cryptoCoins[0].last_updated;
-  const symbol = cryptoCoins[0].symbol;
-  const totalVolume = cryptoCoins[0].total_volume;
-  const totalSuply = cryptoCoins[0].total_supply;
+  // Capturando o primeiro valor SE ele existir
+  const firstCoin = cryptoCoins[0];
+  const updated = firstCoin?.last_updated;
+  // Ternário para definir a data, evitando dela também quebrar a renderização
+  const dataObj = updated ? new Date(updated) : new Date();
+  const dataFormated = updated ? dataObj.toLocaleString('pt-BR') : 'N/A';
+
+  // Optional Chain para valores seguros evitando de quebrar a API
+  const symbol = firstCoin?.symbol;
+  const totalVolume = firstCoin?.total_volume;
+  const totalSuply = firstCoin?.total_supply;
+  const allTimeHigh = firstCoin?.ath;
 
   return (
     <coin.Main>
       <coin.DivInformation>
         <coin.DivWrapperInformation>
-          <coin.Information>Last Updated: {updated} </coin.Information>
-          <coin.Information>Top Coin: {formatSymbol(symbol)}</coin.Information>
-          <coin.Information>Total Volume: {totalVolume}</coin.Information>
-          <coin.Information>Total Supply: {totalSuply}</coin.Information>
+          <coin.Information>
+            Last Updated: <strong>{dataFormated}</strong>{' '}
+          </coin.Information>
+          <coin.Information>
+            Top Coin: <strong>{formatSymbol(symbol)}</strong>
+          </coin.Information>
+          <coin.Information>
+            Total Volume: <strong>{totalVolume}</strong>
+          </coin.Information>
+          <coin.Information>
+            Total Supply: <strong>{totalSuply}</strong>
+          </coin.Information>
+          <coin.Information>
+            All-Time-High: <strong>{formatCoin.format(allTimeHigh)}</strong>
+          </coin.Information>
         </coin.DivWrapperInformation>
       </coin.DivInformation>
       <coin.ContainerTitle>
         <CoinCryptoLogo />
       </coin.ContainerTitle>
-
       <coin.DivForm>
-        <coin.InputCoin placeholder="Procure a crypto..." />
+        <coin.InputCoin
+          placeholder="Procure a crypto..."
+          type="text"
+          value={searchInputText}
+          onChange={handleChange}
+        />
+        <coin.ButtonSearch onClick={handleClick} />
       </coin.DivForm>
 
       <coin.Sectioncoins>
@@ -101,7 +155,7 @@ export default function CryptoCoins() {
                   </coin.Cryptopricepercentage>
                 </coin.PriceWrapper>
                 <coin.CryptoPriceChange>
-                  24h ({formatCoin.format(coins.market_cap_change_24h)})
+                  24h ({coins.market_cap_change_24h})
                 </coin.CryptoPriceChange>
                 <coin.HighLow>
                   <coin.Price>High ({coins.high_24h})</coin.Price>
@@ -111,13 +165,13 @@ export default function CryptoCoins() {
                 <coin.ButtonDetail
                   whileHover={{ scale: 1.05 }}
                   whileTap={{ scale: 0.95 }}
-                  initial="0"
-                  animate={{ x: [0, 5, -10, 0] }}
+                  animate={{ x: [0, -20, 20, -10, 0] }}
                   transition={{
-                    duration: 0.5,
+                    duration: 0.3,
                     ease: 'easeInOut',
                     delay: 5,
-                    repeat: 'Infinity',
+                    repeatDelay: 5,
+                    repeat: Infinity,
                   }}
                 >
                   Detalhes...
@@ -127,6 +181,19 @@ export default function CryptoCoins() {
           })
         )}
       </coin.Sectioncoins>
+      {!search && (
+        <Pagination>
+          <button onClick={handlePrevPage} disabled={page === 1}>
+            Anterior
+          </button>
+
+          <span>Página {page}</span>
+
+          <button onClick={handleNextPage} disabled={loading}>
+            Próxima
+          </button>
+        </Pagination>
+      )}
     </coin.Main>
   );
 }

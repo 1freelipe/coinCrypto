@@ -33,12 +33,13 @@ export const CoinImg = styled(motion.div)`
   perspective: 800px;
 `;
 
-export const DivForm = styled.div`
+export const DivForm = styled.form`
   width: 85%;
   display: flex;
   align-items: center;
   justify-content: center;
   margin: 0 auto;
+  position: relative;
 `;
 
 export const InputCoin = styled.input`
@@ -171,6 +172,7 @@ export const DivWrapperInformation = styled.div`
   align-items: center;
   justify-content: flex-start;
   gap: 15px;
+  border-bottom: 1px solid #d4af37;
 `;
 
 export const Information = styled.h3`
@@ -178,14 +180,14 @@ export const Information = styled.h3`
   font-family: 'Poppins', sans-serif;
   font-weight: 500;
   font-style: normal;
-  font-size: 20px;
+  font-size: 14px;
 `;
 
 export const ButtonDetail = styled(motion.button)`
-  border: 2px solid #d4af37;
+  border: 2px solid #fffff0;
   color: #fffff0;
-  background: #bc13fe;
-  padding: 15px;
+  background: #d4af37;
+  padding: 7px;
   font-family: 'Poppins', sans-serif;
   font-weight: 700;
   font-style: normal;
@@ -196,4 +198,13 @@ export const ButtonDetail = styled(motion.button)`
   font-size: 16px;
   border-radius: 12px;
   width: 150px;
+`;
+
+export const ButtonSearch = styled.button`
+  position: absolute;
+  top: -5;
+  right: 0;
+  background: #fffff0;
+  width: 50px;
+  height: 50px;
 `;
