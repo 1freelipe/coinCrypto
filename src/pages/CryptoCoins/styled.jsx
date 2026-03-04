@@ -203,8 +203,15 @@ export const ButtonDetail = styled(motion.button)`
 export const ButtonSearch = styled.button`
   position: absolute;
   top: -5;
-  right: 0;
-  background: #fffff0;
-  width: 50px;
-  height: 50px;
+  right: 9px;
+  width: 30px;
+  height: 30px;
+  border: none;
+  background: transparent;
+  cursor: pointer;
+
+  .search {
+    font-size: 22px;
+    color: #fffff0;
+  }
 `;

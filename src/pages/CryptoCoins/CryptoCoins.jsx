@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import Getcoins from '../../api/api';
+import { GoSearch } from 'react-icons/go';
 import axios from '../../services/axios';
 
 import CardCoin from '../../components/CardCoin/CardCoin';
@@ -121,11 +122,13 @@ export default function CryptoCoins() {
           value={searchInputText}
           onChange={handleChange}
         />
-        <coin.ButtonSearch onClick={handleClick} />
+        <coin.ButtonSearch onClick={handleClick}>
+          <GoSearch className="search" />
+        </coin.ButtonSearch>
       </coin.DivForm>
 
       <coin.Sectioncoins>
-        {loading ? (
+        {cryptoCoins.length === 0 ? (
           <CardCoin>
             <h1 style={{ color: '#fffff0' }}>Coins not found</h1>
           </CardCoin>
