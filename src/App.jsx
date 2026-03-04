@@ -1,11 +1,11 @@
-import CryptoCoins from './pages/CryptoCoins/CryptoCoins';
 import GlobalStyles from './GlobalStyles/GlobalStyles';
+import CryptoCoinsRoutes from './pages/CryptoCoins/CryptoCoinsRoutes';
 
 function App() {
   return (
     <>
       <GlobalStyles />
-      <CryptoCoins />
+      <CryptoCoinsRoutes />
     </>
   );
 }

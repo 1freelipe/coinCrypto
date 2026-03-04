@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import { useNavigate } from 'react-router';
 import Getcoins from '../../api/api';
 import { GoSearch } from 'react-icons/go';
 import axios from '../../services/axios';
@@ -16,6 +17,7 @@ export default function CryptoCoins() {
   const [search, setSearch] = useState('');
   const [searchInputText, setSearchInputText] = useState('');
   const perPage = 20;
+  const navigate = useNavigate();
 
   useEffect(() => {
     async function fetchData() {
@@ -55,6 +57,9 @@ export default function CryptoCoins() {
     e.preventDefault();
     setSearch(searchInputText);
     setPage(1);
+  };
+  const handleNavigate = (id) => {
+    navigate(`/coin/${id}`);
   };
 
   // Método para formatação de valores, já formatado com o R$ utilizando Intl.NumberFormat
@@ -162,6 +167,7 @@ export default function CryptoCoins() {
                   </coin.HighLow>
 
                   <coin.ButtonDetail
+                    onClick={() => handleNavigate(coins.id)}
                     whileHover={{ scale: 1.05 }}
                     whileTap={{ scale: 0.95 }}
                     animate={{ x: [0, -20, 20, -10, 0] }}
