@@ -9,6 +9,12 @@ import * as coin from './styled';
 import CoinCryptoLogo from '../../components/AuraHover/AuraHover';
 import Pagination from '../../components/Pagination/Pagination';
 import LoadingSkeleton from '../../components/Skeleton/Skeleton';
+import {
+  getFormattedUpdateDate,
+  formatCoin,
+  formatSymbol,
+  percentageFormat,
+} from '../../helpers/utils/formatters';
 
 export default function CryptoCoins() {
   const [cryptoCoins, setCryptoCoins] = useState([]);
@@ -50,6 +56,7 @@ export default function CryptoCoins() {
 
   const handleNextPage = () => setPage((prev) => prev + 1);
   const handlePrevPage = () => setPage((prev) => (prev > 1 ? prev - 1 : 1));
+
   const handleChange = (e) => {
     setSearchInputText(e.target.value);
   };
@@ -62,31 +69,10 @@ export default function CryptoCoins() {
     navigate(`/coin/${id}`);
   };
 
-  // Método para formatação de valores, já formatado com o R$ utilizando Intl.NumberFormat
-  const formatCoin = new Intl.NumberFormat('pt-BR', {
-    style: 'currency',
-    currency: 'BRL',
-  });
-
-  // Método para formatação de porcentagem.
-  const percentageFormat = new Intl.NumberFormat('pt-BR', {
-    minimumFractionDigits: 2,
-    maximumFractionDigits: 2,
-  });
-
-  // Método para formatar os símbolos de cada moeda em maiúsculo.
-  const formatSymbol = (str) => {
-    if (typeof str !== 'string') return '';
-    return str.toUpperCase();
-  };
+  const dateFormated = getFormattedUpdateDate(cryptoCoins);
 
   // Capturando o primeiro valor SE ele existir
   const firstCoin = cryptoCoins[0];
-  const updated = firstCoin?.last_updated;
-  // Ternário para definir a data, evitando dela também quebrar a renderização
-  const dataObj = updated ? new Date(updated) : new Date();
-  const dataFormated = updated ? dataObj.toLocaleString('pt-BR') : 'N/A';
-
   // Optional Chain para valores seguros evitando de quebrar a API
   const symbol = firstCoin?.symbol;
   const totalVolume = firstCoin?.total_volume;
@@ -98,7 +84,7 @@ export default function CryptoCoins() {
       <coin.DivInformation>
         <coin.DivWrapperInformation>
           <coin.Information>
-            Last Updated: <strong>{dataFormated}</strong>{' '}
+            Last Updated: <strong>{dateFormated}</strong>{' '}
           </coin.Information>
           <coin.Information>
             Top Coin: <strong>{formatSymbol(symbol)}</strong>
