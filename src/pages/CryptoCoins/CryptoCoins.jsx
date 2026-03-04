@@ -100,7 +100,7 @@ export default function CryptoCoins() {
           </coin.Information>
         </coin.DivWrapperInformation>
       </coin.DivInformation>
-      <coin.ContainerTitle>
+      <coin.ContainerTitle onClick={() => navigate('/index')}>
         <CoinCryptoLogo />
       </coin.ContainerTitle>
       <coin.DivForm>
