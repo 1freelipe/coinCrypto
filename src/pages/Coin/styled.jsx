@@ -1,10 +1,9 @@
 import styled from 'styled-components';
 
 export const SecondMain = styled.main`
-  background: #242124;
+  background: #0f1214;
   padding: 10px;
   position: relative;
-  height: 100vw;
 `;
 
 export const Divtop = styled.div`
@@ -13,11 +12,14 @@ export const Divtop = styled.div`
 `;
 
 export const DivName = styled.div`
-  width: 200px;
+  width: 100%;
   padding: 10px;
   display: flex;
   align-items: center;
   justify-content: center;
+  position: absolute;
+  top: 0;
+  z-index: 10;
 `;
 
 export const NameCoin = styled.h1`
@@ -26,22 +28,33 @@ export const NameCoin = styled.h1`
   font-weight: 800;
   font-style: normal;
   text-transform: uppercase;
+
+  &.subtitle {
+    font-size: 18px;
+  }
 `;
 
 export const ContainerWrapper = styled.div`
   display: flex;
-  gap: 20px;
+  gap: 15px;
   width: 100%;
   height: 700px;
+  margin-bottom: 10px;
 `;
 
 export const ContainerChart = styled.div`
-  width: 1350px;
+  width: 1730px;
   height: 700px;
   position: relative;
   margin-left: 25px;
   border-radius: 9px;
-  border: 1px solid #4052d6;
+  background: #111519;
+  border: 2px solid #1d2126;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 10px;
+  position: relative;
 `;
 
 export const DivKPI = styled.div`
@@ -56,9 +69,15 @@ export const DivKPI = styled.div`
 
 export const KPICard = styled.div`
   width: 100%;
-  height: 150px;
+  height: 100%;
   border-radius: 9px;
-  border: 1px solid #4052d6;
+  background: #111519;
+  border: 2px solid #1d2126;
+  padding: 5px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
 `;
 
 export const DivArrow = styled.div`
@@ -83,4 +102,39 @@ export const DivArrow = styled.div`
       color: #d4af37;
     }
   }
+`;
+
+export const DivGrid = styled.div`
+  width: 99.2%;
+  height: 220px;
+  padding: 5px;
+  margin-left: 19px;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  align-items: center;
+  justify-content: center;
+  gap: 15px;
+  margin-bottom: 10px;
+`;
+
+export const KPIGrid = styled.div`
+  width: 100%;
+  height: 100%;
+  border-radius: 9px;
+  background: #111519;
+  border: 2px solid #1d2126;
+`;
+
+export const ContainerAreaChart = styled.div`
+  width: 1860px;
+  height: 700px;
+  position: relative;
+  margin-left: 25px;
+  border-radius: 9px;
+  background: #111519;
+  border: 2px solid #1d2126;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 10px;
 `;
