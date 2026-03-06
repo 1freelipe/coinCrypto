@@ -9,6 +9,7 @@ import CoinHeader from '../../components/CoinHeader/CoinHeader';
 import CandlestickChart from '../../components/Candlestick/Candlestick';
 import AreaChart from '../../components/AreaChart/AreaChart';
 import Histogram from '../../components/Histogram/Histogram';
+import BaseLine from '../../components/BaseLine/BaseLine';
 import { formatCoin } from '../../helpers/utils/formatters';
 
 export default function Coin() {
@@ -113,7 +114,14 @@ export default function Coin() {
             </unique.DivName>
             <Histogram data={histogramChart} />
           </unique.KPICard>
-          <unique.KPICard />
+          <unique.KPICard>
+            <unique.DivName>
+              <unique.NameCoin className="subtitle">
+                Media base prices
+              </unique.NameCoin>
+            </unique.DivName>
+            <BaseLine data={areaChart} />
+          </unique.KPICard>
           <unique.KPICard />
         </unique.DivKPI>
       </unique.ContainerWrapper>
