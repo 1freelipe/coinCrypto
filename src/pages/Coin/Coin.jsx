@@ -9,6 +9,7 @@ import CoinHeader from '../../components/CoinHeader/CoinHeader';
 import CandlestickChart from '../../components/Candlestick/Candlestick';
 import AreaChart from '../../components/AreaChart/AreaChart';
 import Histogram from '../../components/Histogram/Histogram';
+import { formatCoin } from '../../helpers/utils/formatters';
 
 export default function Coin() {
   const [coin, setCoin] = useState([]);
@@ -32,7 +33,7 @@ export default function Coin() {
           axios.get(`coins/${id}/ohlc`, {
             params: {
               vs_currency: 'brl',
-              days: 14,
+              days: 30,
             },
           }),
           axios.get(`coins/${id}/market_chart`, {
@@ -95,7 +96,7 @@ export default function Coin() {
         <unique.ContainerChart>
           <unique.DivName>
             <unique.NameCoin>
-              {uniqueCoin.name} ({uniqueCoin.symbol}) - History for 14 days
+              {uniqueCoin.name} ({uniqueCoin.symbol}) - History for 30 days
             </unique.NameCoin>
           </unique.DivName>
           <unique.DivArrow onClick={() => navigate(-1)}>
@@ -118,8 +119,24 @@ export default function Coin() {
       </unique.ContainerWrapper>
 
       <unique.DivGrid>
-        <unique.KPIGrid />
-        <unique.KPIGrid />
+        <unique.KPIGrid>
+          <unique.WrapperTitle>
+            <unique.TitleKPI>Current Price</unique.TitleKPI>
+          </unique.WrapperTitle>
+
+          <unique.NameCoin>
+            {formatCoin.format(uniqueCoin.current_price)}
+          </unique.NameCoin>
+        </unique.KPIGrid>
+        <unique.KPIGrid>
+          <unique.WrapperTitle>
+            <unique.TitleKPI>High Price</unique.TitleKPI>
+          </unique.WrapperTitle>
+
+          <unique.NameCoin>
+            {formatCoin.format(uniqueCoin.high_24h)}
+          </unique.NameCoin>
+        </unique.KPIGrid>
         <unique.KPIGrid />
         <unique.KPIGrid />
       </unique.DivGrid>

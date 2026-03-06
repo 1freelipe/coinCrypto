@@ -26,6 +26,9 @@ export default function AreaChart({ data }) {
       topColor: '#2962ff',
       bottomColor: 'rgba(41, 98, 255, 0.28)',
       lineWidth: 2,
+      priceFormat: {
+        type: 'volume',
+      },
     });
 
     areaSeries.setData(data);

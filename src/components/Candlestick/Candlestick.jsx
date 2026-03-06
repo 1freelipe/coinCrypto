@@ -27,6 +27,9 @@ export default function CandlestickChart({ data }) {
       borderVisible: false,
       wickUpColor: '#26a69a',
       wickDownColor: '#ef5350',
+      priceFormat: {
+        type: 'volume',
+      },
     });
 
     candleStickSeries.setData(data);

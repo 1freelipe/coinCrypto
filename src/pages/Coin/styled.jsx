@@ -123,6 +123,11 @@ export const KPIGrid = styled.div`
   border-radius: 9px;
   background: #111519;
   border: 2px solid #1d2126;
+  position: relative;
+  padding: 5px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 `;
 
 export const ContainerAreaChart = styled.div`
@@ -137,4 +142,21 @@ export const ContainerAreaChart = styled.div`
   align-items: center;
   justify-content: center;
   padding: 10px;
+`;
+
+export const WrapperTitle = styled.div`
+  position: absolute;
+  top: 15px;
+  width: 200px;
+  left: 30%;
+`;
+
+export const TitleKPI = styled.h3`
+  font-family: 'Poppins', sans-serif;
+  font-weight: 600;
+  font-style: normal;
+  font-size: 22px;
+  color: #fffff0;
+  text-transform: uppercase;
+  text-align: center;
 `;
