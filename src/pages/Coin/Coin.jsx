@@ -142,7 +142,7 @@ export default function Coin() {
         </unique.KPIGrid>
         <unique.KPIGrid>
           <unique.WrapperTitle>
-            <unique.TitleKPI>High Price</unique.TitleKPI>
+            <unique.TitleKPI>High Price (24h)</unique.TitleKPI>
           </unique.WrapperTitle>
 
           <unique.NameCoin>
@@ -159,7 +159,7 @@ export default function Coin() {
             className="percentagePrice"
           >
             {uniqueCoin.price_change_percentage_24h > 0 ? '+' : ''}
-            {percentageFormat.format(uniqueCoin.price_change_percentage_24h)}
+            {percentageFormat.format(uniqueCoin.price_change_percentage_24h)}%
           </unique.NameCoin>
         </unique.KPIGrid>
         <unique.KPIGrid>
