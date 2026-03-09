@@ -63,6 +63,10 @@ export const Sectioncoins = styled.section`
     grid-template-columns: repeat(2, 1fr);
   }
 
+  @media (max-width: 1450px) {
+    width: 100%;
+  }
+
   @media (max-width: 1099px) {
     grid-template-columns: 1fr;
   }
