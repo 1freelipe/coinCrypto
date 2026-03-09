@@ -33,6 +33,10 @@ const Title = styled(motion.h1)`
   font-family: 'Kanit', sans-serif;
   font-weight: 800;
   font-style: normal;
+
+  @media (max-width: 768px) {
+    font-size: 60px;
+  }
 `;
 
 export default function CoinCryptoLogo() {

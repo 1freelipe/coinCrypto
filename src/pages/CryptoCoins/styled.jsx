@@ -1,8 +1,6 @@
 import styled from 'styled-components';
 import { motion } from 'framer-motion';
 
-import coinImg from '../../images/coin.png';
-
 export const Main = styled.main`
   background: #242124;
   min-height: 100vw;
@@ -11,26 +9,12 @@ export const Main = styled.main`
 `;
 
 export const ContainerTitle = styled.div`
-  width: 700px;
+  max-width: 700px;
   display: flex;
   align-items: center;
   justify-content: center;
   margin: 50px auto 50px;
   position: relative;
-`;
-
-export const CoinImg = styled(motion.div)`
-  background-image: url(${coinImg});
-  background-position: center;
-  background-repeat: no-repeat;
-  background-size: cover;
-  width: 200px;
-  height: 200px;
-  position: absolute;
-  left: 32%;
-  top: -22%;
-  opacity: 0.8;
-  perspective: 800px;
 `;
 
 export const DivForm = styled.form`
@@ -74,6 +58,14 @@ export const Sectioncoins = styled.section`
   margin: 40px auto;
   padding: 20px;
   gap: 25px;
+
+  @media (min-width: 1100px) and (max-width: 1350px) {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  @media (max-width: 1099px) {
+    grid-template-columns: 1fr;
+  }
 `;
 
 export const Namecrypto = styled.h2`
@@ -173,6 +165,10 @@ export const DivWrapperInformation = styled.div`
   justify-content: flex-start;
   gap: 15px;
   border-bottom: 1px solid #d4af37;
+
+  @media (max-width: 560px) {
+    display: none;
+  }
 `;
 
 export const Information = styled.h3`
