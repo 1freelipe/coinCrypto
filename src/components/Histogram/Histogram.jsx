@@ -21,6 +21,15 @@ export default function Histogram({ data }) {
       height: 330,
     });
 
+    const resizeObserver = new ResizeObserver((entries) => {
+      const { width, height } = entries[0].contentRect;
+
+      chart.applyOptions({
+        width: width,
+        height: height,
+      });
+    });
+
     const histogramSeries = chart.addSeries(HistogramSeries, {
       color: '#26a69a',
       priceFormat: {
@@ -30,6 +39,7 @@ export default function Histogram({ data }) {
 
     histogramSeries.setData(data);
     chart.timeScale().fitContent();
+    resizeObserver.observe(chartContainerRef.current);
 
     return () => {
       chart.remove();

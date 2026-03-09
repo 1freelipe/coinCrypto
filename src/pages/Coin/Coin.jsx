@@ -71,9 +71,7 @@ export default function Coin() {
           }),
         );
         setOHLC(formattedData);
-        console.log(response.data);
         setCoin(response.data);
-        console.log(responseAreaChart.data);
         setAreaChart(formattedMarketData);
         setHistogramChart(formattedTimeVolumes);
       } catch (error) {

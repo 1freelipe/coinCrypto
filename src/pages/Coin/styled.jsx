@@ -42,22 +42,22 @@ export const ContainerWrapper = styled.div`
   display: flex;
   gap: 15px;
   width: 100%;
-  height: 700px;
+  min-height: 700px;
   margin-bottom: 10px;
+
+  @media (max-width: 1350px) {
+    display: block;
+  }
 `;
 
 export const ContainerChart = styled.div`
-  width: 1730px;
-  height: 700px;
-  position: relative;
+  width: 100%;
+  min-height: 700px;
   margin-left: 25px;
   border-radius: 9px;
   background: #111519;
   border: 2px solid #1d2126;
   display: flex;
-  align-items: center;
-  justify-content: center;
-  padding: 10px;
   position: relative;
 `;
 
@@ -66,9 +66,17 @@ export const DivKPI = styled.div`
   align-items: center;
   justify-content: center;
   flex-direction: column;
-  width: 30%;
+  width: 350px;
   height: 100%;
   gap: 10px;
+
+  @media (max-width: 1350px) {
+    display: flex;
+    align-items: center;
+    width: 100%;
+    margin-top: 20px;
+    margin-left: 25px;
+  }
 `;
 
 export const KPICard = styled.div`
@@ -119,6 +127,15 @@ export const DivGrid = styled.div`
   justify-content: center;
   gap: 15px;
   margin-bottom: 10px;
+
+  @media (max-width: 1350px) {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  @media (max-width: 1100px) {
+    grid-template-columns: 1fr;
+    margin-bottom: 85px;
+  }
 `;
 
 export const KPIGrid = styled.div`
@@ -132,10 +149,16 @@ export const KPIGrid = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
+
+  @media (max-width: 1100px) {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
 `;
 
 export const ContainerAreaChart = styled.div`
-  width: 1860px;
+  max-width: 100%;
   height: 700px;
   position: relative;
   margin-left: 25px;
@@ -153,6 +176,10 @@ export const WrapperTitle = styled.div`
   top: 15px;
   width: 200px;
   left: 30%;
+
+  @media (max-width: 1100px) {
+    width: 100%;
+  }
 `;
 
 export const TitleKPI = styled.h3`

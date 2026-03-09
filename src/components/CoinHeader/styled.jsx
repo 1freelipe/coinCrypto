@@ -7,6 +7,10 @@ export const DivInformation = styled.div`
   position: absolute;
   top: 0;
   left: 0;
+
+  @media (max-width: 1100px) {
+    display: none;
+  }
 `;
 export const DivWrapperInformation = styled.div`
   width: 100%;

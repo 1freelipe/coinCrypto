@@ -21,6 +21,15 @@ export default function BaseLine({ data, ath }) {
       height: 330,
     });
 
+    const resizeObserver = new ResizeObserver((entries) => {
+      const { width, height } = entries[0].contentRect;
+
+      chart.applyOptions({
+        width: width,
+        height: height,
+      });
+    });
+
     const somaTotal = data.reduce((acc, item) => acc + item.value, 0);
     const media7days = somaTotal / data.length;
 
@@ -39,6 +48,7 @@ export default function BaseLine({ data, ath }) {
 
     baseLineSeries.setData(data);
     chart.timeScale().fitContent();
+    resizeObserver.observe(chartContainerRef.current);
 
     return () => {
       chart.remove();

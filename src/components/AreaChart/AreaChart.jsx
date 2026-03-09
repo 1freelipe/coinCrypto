@@ -21,6 +21,15 @@ export default function AreaChart({ data }) {
       height: 680,
     });
 
+    const resizeObserver = new ResizeObserver((entries) => {
+      const { width, height } = entries[0].contentRect;
+
+      chart.applyOptions({
+        width: width,
+        height: height,
+      });
+    });
+
     const areaSeries = chart.addSeries(AreaSeries, {
       lineColor: 'rgba(38, 166, 154, 1)',
       topColor: 'rgba(38, 166, 154, 0.28)',
@@ -33,6 +42,7 @@ export default function AreaChart({ data }) {
 
     areaSeries.setData(data);
     chart.timeScale().fitContent();
+    resizeObserver.observe(chartContainerRef.current);
 
     return () => {
       chart.remove();
