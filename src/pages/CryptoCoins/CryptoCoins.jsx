@@ -105,7 +105,7 @@ export default function CryptoCoins() {
       </coin.ContainerTitle>
       <coin.DivForm>
         <coin.InputCoin
-          placeholder="Procure a crypto..."
+          placeholder="Find your crypto..."
           type="text"
           value={searchInputText}
           onChange={handleChange}

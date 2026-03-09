@@ -32,6 +32,10 @@ export const NameCoin = styled.h1`
   &.subtitle {
     font-size: 18px;
   }
+
+  &.percentagePrice {
+    color: ${(props) => (props.percentage < 0 ? 'red' : 'green')};
+  }
 `;
 
 export const ContainerWrapper = styled.div`

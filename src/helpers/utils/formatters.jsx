@@ -12,6 +12,18 @@ export const getFormattedUpdateDate = (coinArray) => {
   return dateObj.toLocaleString('pt-BR');
 };
 
+export const getFormattedATHDate = (coinArray) => {
+  if (coinArray.length === 0 || !coinArray) return 'Carregando...';
+
+  const uniqueCoin = coinArray[0];
+  const athDate = uniqueCoin.ath_date;
+
+  if (!athDate) return 'N/A';
+
+  const dateObj = new Date(athDate);
+  return dateObj.toLocaleString('pt-BR');
+};
+
 // Método para formatação do símbolo ou de qualquer coisa que eu precise do CAPITALIZE
 export const formatSymbol = (str) => {
   if (typeof str !== 'string') return '';

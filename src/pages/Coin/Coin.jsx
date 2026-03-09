@@ -10,7 +10,11 @@ import CandlestickChart from '../../components/Candlestick/Candlestick';
 import AreaChart from '../../components/AreaChart/AreaChart';
 import Histogram from '../../components/Histogram/Histogram';
 import BaseLine from '../../components/BaseLine/BaseLine';
-import { formatCoin } from '../../helpers/utils/formatters';
+import {
+  formatCoin,
+  percentageFormat,
+  getFormattedATHDate,
+} from '../../helpers/utils/formatters';
 
 export default function Coin() {
   const [coin, setCoin] = useState([]);
@@ -87,6 +91,7 @@ export default function Coin() {
   }
 
   const uniqueCoin = coin[0];
+  const athDate = getFormattedATHDate(coin);
 
   return (
     <unique.SecondMain>
@@ -122,7 +127,6 @@ export default function Coin() {
             </unique.DivName>
             <BaseLine data={areaChart} />
           </unique.KPICard>
-          <unique.KPICard />
         </unique.DivKPI>
       </unique.ContainerWrapper>
 
@@ -145,8 +149,26 @@ export default function Coin() {
             {formatCoin.format(uniqueCoin.high_24h)}
           </unique.NameCoin>
         </unique.KPIGrid>
-        <unique.KPIGrid />
-        <unique.KPIGrid />
+        <unique.KPIGrid>
+          <unique.WrapperTitle>
+            <unique.TitleKPI>Percentage 24h</unique.TitleKPI>
+          </unique.WrapperTitle>
+
+          <unique.NameCoin
+            percentage={uniqueCoin.price_change_percentage_24h}
+            className="percentagePrice"
+          >
+            {uniqueCoin.price_change_percentage_24h > 0 ? '+' : ''}
+            {percentageFormat.format(uniqueCoin.price_change_percentage_24h)}
+          </unique.NameCoin>
+        </unique.KPIGrid>
+        <unique.KPIGrid>
+          <unique.WrapperTitle>
+            <unique.TitleKPI>ATH Date</unique.TitleKPI>
+          </unique.WrapperTitle>
+
+          <unique.NameCoin>{athDate}</unique.NameCoin>
+        </unique.KPIGrid>
       </unique.DivGrid>
 
       <unique.ContainerAreaChart>

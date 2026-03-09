@@ -18,7 +18,7 @@ export default function BaseLine({ data, ath }) {
         horzLines: { color: '#2b2b43' },
       },
       width: chartContainerRef.current.clientWidth,
-      height: 230,
+      height: 330,
     });
 
     const somaTotal = data.reduce((acc, item) => acc + item.value, 0);

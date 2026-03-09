@@ -22,9 +22,9 @@ export default function AreaChart({ data }) {
     });
 
     const areaSeries = chart.addSeries(AreaSeries, {
-      lineColor: '#2962ff',
-      topColor: '#2962ff',
-      bottomColor: 'rgba(41, 98, 255, 0.28)',
+      lineColor: 'rgba(38, 166, 154, 1)',
+      topColor: 'rgba(38, 166, 154, 0.28)',
+      bottomColor: 'rgba(38, 166, 154, 1)',
       lineWidth: 2,
       priceFormat: {
         type: 'volume',
