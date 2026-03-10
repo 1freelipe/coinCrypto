@@ -36,6 +36,14 @@ export const NameCoin = styled.h1`
   &.percentagePrice {
     color: ${(props) => (props.percentage < 0 ? 'red' : 'green')};
   }
+
+  @media (max-width: 1200px) {
+    font-size: 20px;
+  }
+
+  @media (max-width: 500px) {
+    font-size: 15px;
+  }
 `;
 
 export const ContainerWrapper = styled.div`
@@ -45,20 +53,23 @@ export const ContainerWrapper = styled.div`
   min-height: 700px;
   margin-bottom: 10px;
 
-  @media (max-width: 1350px) {
+  @media (max-width: 1650px) {
     display: block;
   }
 `;
 
 export const ContainerChart = styled.div`
-  width: 100%;
+  width: 74.7%;
   min-height: 700px;
-  margin-left: 25px;
   border-radius: 9px;
   background: #111519;
   border: 2px solid #1d2126;
   display: flex;
   position: relative;
+
+  @media (max-width: 1650px) {
+    width: 100%;
+  }
 `;
 
 export const DivKPI = styled.div`
@@ -66,16 +77,15 @@ export const DivKPI = styled.div`
   align-items: center;
   justify-content: center;
   flex-direction: column;
-  width: 350px;
+  width: 457px;
   height: 100%;
   gap: 10px;
 
-  @media (max-width: 1350px) {
+  @media (max-width: 1650px) {
     display: flex;
     align-items: center;
     width: 100%;
     margin-top: 20px;
-    margin-left: 25px;
   }
 `;
 
@@ -94,7 +104,7 @@ export const KPICard = styled.div`
 
 export const DivArrow = styled.div`
   position: absolute;
-  left: -45px;
+  left: -10px;
   top: 50%;
   width: 50px;
   height: 50px;
@@ -103,6 +113,7 @@ export const DivArrow = styled.div`
   align-items: center;
   justify-content: center;
   cursor: pointer;
+  z-index: 10;
 
   .arrow {
     font-size: 35px;
@@ -114,13 +125,16 @@ export const DivArrow = styled.div`
       color: #d4af37;
     }
   }
+
+  @media (max-width: 768px) {
+    display: none;
+  }
 `;
 
 export const DivGrid = styled.div`
-  width: 99.2%;
+  width: 100%;
   height: 220px;
   padding: 5px;
-  margin-left: 19px;
   display: grid;
   grid-template-columns: repeat(4, 1fr);
   align-items: center;
@@ -130,11 +144,16 @@ export const DivGrid = styled.div`
 
   @media (max-width: 1350px) {
     grid-template-columns: repeat(2, 1fr);
+    font-size: 12px;
   }
 
   @media (max-width: 1100px) {
     grid-template-columns: 1fr;
-    margin-bottom: 85px;
+    margin-bottom: 30px;
+  }
+
+  @media (max-width: 770px) {
+    margin-bottom: 20px;
   }
 `;
 
@@ -161,7 +180,6 @@ export const ContainerAreaChart = styled.div`
   max-width: 100%;
   height: 700px;
   position: relative;
-  margin-left: 25px;
   border-radius: 9px;
   background: #111519;
   border: 2px solid #1d2126;
@@ -174,11 +192,15 @@ export const ContainerAreaChart = styled.div`
 export const WrapperTitle = styled.div`
   position: absolute;
   top: 15px;
-  width: 200px;
   left: 30%;
 
+  @media (max-width: 1350px) {
+    top: 0;
+  }
+
   @media (max-width: 1100px) {
-    width: 100%;
+    position: relative;
+    left: 0;
   }
 `;
 
@@ -190,4 +212,8 @@ export const TitleKPI = styled.h3`
   color: #fffff0;
   text-transform: uppercase;
   text-align: center;
+
+  @media (max-width: 768px) {
+    font-size: 14px;
+  }
 `;

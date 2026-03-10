@@ -46,6 +46,7 @@ export default function CandlestickChart({ data }) {
     resizeObserver.observe(chartContainerRef.current);
 
     return () => {
+      resizeObserver.disconnect();
       chart.remove();
     };
   }, [data]);

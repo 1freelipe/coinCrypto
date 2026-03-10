@@ -45,6 +45,7 @@ export default function AreaChart({ data }) {
     resizeObserver.observe(chartContainerRef.current);
 
     return () => {
+      resizeObserver.disconnect();
       chart.remove();
     };
   }, [data]);

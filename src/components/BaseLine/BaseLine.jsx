@@ -51,6 +51,7 @@ export default function BaseLine({ data, ath }) {
     resizeObserver.observe(chartContainerRef.current);
 
     return () => {
+      resizeObserver.disconnect();
       chart.remove();
     };
   }, [data, ath]);

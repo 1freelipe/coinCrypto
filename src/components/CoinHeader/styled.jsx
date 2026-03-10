@@ -27,4 +27,8 @@ export const Information = styled.h3`
   font-weight: 500;
   font-style: normal;
   font-size: 14px;
+
+  @media (max-width: 1618px) {
+    font-size: 10px;
+  }
 `;
