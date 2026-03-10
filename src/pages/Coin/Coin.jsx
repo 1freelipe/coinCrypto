@@ -15,6 +15,8 @@ import {
   percentageFormat,
   getFormattedATHDate,
 } from '../../helpers/utils/formatters';
+import LoadingSkeletonDetail from '../../components/SkeletonDetail/SkeletonDetail';
+import WaitCrypto from '../../components/WaitCrypto/WaitCrypto';
 
 export default function Coin() {
   const [coin, setCoin] = useState([]);
@@ -28,6 +30,7 @@ export default function Coin() {
   useEffect(() => {
     async function Getcoin() {
       try {
+        // await new Promise((resolve) => setTimeout(resolve, 50000000));
         const [response, responseOHLC, responseAreaChart] = await Promise.all([
           axios.get(`coins/markets`, {
             params: {
@@ -85,7 +88,11 @@ export default function Coin() {
   }, [id]);
 
   if (loading || !ohlc) {
-    return <h1>Aguarde....</h1>;
+    return <LoadingSkeletonDetail />;
+  }
+
+  if (coin.length === 0) {
+    return <WaitCrypto />;
   }
 
   const uniqueCoin = coin[0];
