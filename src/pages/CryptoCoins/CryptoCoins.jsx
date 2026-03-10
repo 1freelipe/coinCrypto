@@ -15,6 +15,7 @@ import {
   formatSymbol,
   percentageFormat,
 } from '../../helpers/utils/formatters';
+import WaitCrypto from '../../components/WaitCrypto/WaitCrypto';
 
 export default function CryptoCoins() {
   const [cryptoCoins, setCryptoCoins] = useState([]);
@@ -78,6 +79,10 @@ export default function CryptoCoins() {
   const totalVolume = firstCoin?.total_volume;
   const totalSuply = firstCoin?.total_supply;
   const allTimeHigh = firstCoin?.ath;
+
+  if (cryptoCoins.length === 0) {
+    return <WaitCrypto />;
+  }
 
   return (
     <coin.Main>
